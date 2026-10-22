@@ -6,3 +6,5 @@ export const PLANS = {
 }
 export const DEFAULT_PLAN = 'pro'
 export const SCRIPT_BLOCKS = ['Hook', 'Introduction', 'Main content', 'Story flow', 'CTA', 'Ending']
+export const NICHES = ['Fitness', 'Finance', 'Tech', 'Food']
+export const HOOK_CATEGORIES = ['Curiosity gap', 'Contrarian statement', 'Question hook', 'Unexpected claim', 'Problem statement']

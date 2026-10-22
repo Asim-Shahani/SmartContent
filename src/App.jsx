@@ -7,9 +7,10 @@ import PagePlaceholder from '@/components/PagePlaceholder'
 import Dashboard from '@/features/dashboard/Dashboard'
 import Discover from '@/features/discover/Discover'
 import Scripts from '@/features/scripts/Scripts'
+import Hooks from '@/features/hooks/Hooks'
 
 const queryClient = new QueryClient()
-const later = ['Channels', 'Ideas', 'Hooks', 'Collections', 'Projects', 'Settings']
+const later = ['Channels', 'Ideas', 'Collections', 'Projects', 'Settings']
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/discover" element={<Discover />} />
                 <Route path="/scripts" element={<Scripts />} />
+                <Route path="/hooks" element={<Hooks />} />
                 {later.map((name) => (
                   <Route key={name} path={`/${name.toLowerCase()}`} element={<PagePlaceholder title={name} />} />
                 ))}
