@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useCallback } from 'react'
-import { PLANS, DEFAULT_PLAN } from '@/lib/constants'
+import { PLANS } from '@/lib/constants'
+import { billing } from '@/billing'
 
 const Ctx = createContext(null)
 
@@ -11,8 +12,8 @@ const WORKSPACES = [
 
 export function WorkspaceProvider({ children }) {
   const [workspace, setWorkspace] = useState(WORKSPACES[0])
-  const [plan] = useState(DEFAULT_PLAN)
-  const [credits, setCredits] = useState(PLANS[DEFAULT_PLAN].credits)
+  const [plan] = useState(billing.getPlanId())
+  const [credits, setCredits] = useState(PLANS[plan].credits)
 
   // Returns false if the user can't afford it
   const spend = useCallback(
