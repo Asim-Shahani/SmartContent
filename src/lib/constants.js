@@ -5,3 +5,4 @@ export const PLANS = {
   titan:     { credits: 1500, workspaces: 20, channels: 500 },
 }
 export const DEFAULT_PLAN = 'pro'
+export const SCRIPT_BLOCKS = ['Hook', 'Introduction', 'Main content', 'Story flow', 'CTA', 'Ending']

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { api } from '@/api'
 import { useCredits } from '@/hooks/useCredits'
@@ -15,6 +16,7 @@ export default function AnalysisDrawer({ video, onClose }) {
   const [tab, setTab] = useState('Summary')
   const { credits, spend } = useCredits()
   const toast = useToast()
+  const navigate = useNavigate()
   const queryClient = useQueryClient()
 
   const { data: analysis } = useQuery({
@@ -33,6 +35,18 @@ export default function AnalysisDrawer({ video, onClose }) {
     onError: (err) => toast(err.message),
   })
 
+  const makeScript = useMutation({
+    mutationFn: () => api.createScript(video, analysis),
+    onSuccess: () => {
+      spend(CREDIT_COST.script) // charge only after success
+      queryClient.invalidateQueries({ queryKey: ['scripts'] })
+      toast('Script ready')
+      onClose()
+      navigate('/scripts')
+    },
+    onError: () => toast('Script failed. You were not charged. Please try again.'),
+  })
+
   if (!video) return null
 
   const copyForLlm = async () => {
@@ -43,6 +57,8 @@ export default function AnalysisDrawer({ video, onClose }) {
       toast('Could not copy. Please try again.')
     }
   }
+
+  const noCredits = (cost) => credits < cost
 
   return (
     <Drawer open onClose={onClose} title="Video analysis">
@@ -75,8 +91,19 @@ export default function AnalysisDrawer({ video, onClose }) {
           </div>
           <Card>{analysis[tab.toLowerCase()]}</Card>
           <div className="mt-4 flex flex-wrap gap-2">
+            <Button
+              onClick={() => makeScript.mutate()}
+              disabled={makeScript.isPending || noCredits(CREDIT_COST.script)}
+            >
+              {makeScript.isPending ? 'Writing script' : `Create script (${CREDIT_COST.script} credit)`}
+            </Button>
             <Button variant="secondary" onClick={copyForLlm}>Export for LLM</Button>
           </div>
+          {noCredits(CREDIT_COST.script) && (
+            <p className="mt-2 text-sm font-medium text-amber-700">
+              You have no credits left. Billing is coming soon. Credits reset next month.
+            </p>
+          )}
         </>
       ) : (
         <Card className="mt-5">
@@ -87,7 +114,7 @@ export default function AnalysisDrawer({ video, onClose }) {
               Analyzing this video costs {CREDIT_COST.analyze} credit. You are only charged if it finishes.
             </p>
           )}
-          {credits < CREDIT_COST.analyze && (
+          {noCredits(CREDIT_COST.analyze) && (
             <p className="mt-2 text-sm font-medium text-amber-700">
               You have no credits left. Billing is coming soon. Credits reset next month.
             </p>
@@ -95,7 +122,7 @@ export default function AnalysisDrawer({ video, onClose }) {
           <Button
             className="mt-3"
             onClick={() => run.mutate()}
-            disabled={run.isPending || credits < CREDIT_COST.analyze}
+            disabled={run.isPending || noCredits(CREDIT_COST.analyze)}
           >
             {run.isPending ? 'Processing' : `Analyze video (${CREDIT_COST.analyze} credit)`}
           </Button>

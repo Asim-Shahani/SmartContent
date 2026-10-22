@@ -6,9 +6,10 @@ import AppShell from '@/layout/AppShell'
 import PagePlaceholder from '@/components/PagePlaceholder'
 import Dashboard from '@/features/dashboard/Dashboard'
 import Discover from '@/features/discover/Discover'
+import Scripts from '@/features/scripts/Scripts'
 
 const queryClient = new QueryClient()
-const later = ['Channels', 'Ideas', 'Hooks', 'Collections', 'Scripts', 'Projects', 'Settings']
+const later = ['Channels', 'Ideas', 'Hooks', 'Collections', 'Projects', 'Settings']
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
                 <Route path="/" element={<Navigate to="/dashboard" replace />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/discover" element={<Discover />} />
+                <Route path="/scripts" element={<Scripts />} />
                 {later.map((name) => (
                   <Route key={name} path={`/${name.toLowerCase()}`} element={<PagePlaceholder title={name} />} />
                 ))}
