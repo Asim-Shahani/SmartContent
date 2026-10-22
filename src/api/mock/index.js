@@ -1,1 +1,2 @@
-export { getVideos } from './videos'
+export { getVideos, getVideoById } from './videos'
+export { getAnalysis, analyzeVideo } from './analysis'

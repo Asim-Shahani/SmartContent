@@ -17,3 +17,5 @@ export async function getVideos({ niche = '', platform = '', minOutlier = 0, sor
     .filter((v) => (!niche || v.niche === niche) && (!platform || v.platform === platform) && v.outlierScore >= minOutlier)
     .sort((a, b) => (sort === 'views' ? b.views - a.views : b.outlierScore - a.outlierScore))
 }
+
+export const getVideoById = (id) => VIDEOS.find((v) => v.id === id)
