@@ -12,3 +12,7 @@ export {
 export { getIdeas, toggleShortlist } from './ideas'
 export { createScriptFromIdea } from './scripts'
 export { getProjects, createProject, addAssetToProject, removeAssetFromProject, moveAsset } from './projects'
+export {
+  getSession, signUp, logIn, logOut, socialSignIn, passkeySignIn,
+  enrollPasskey, requestPasswordReset, resetPassword, completeOnboarding,
+} from './auth'
