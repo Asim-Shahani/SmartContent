@@ -4,6 +4,12 @@ import { AuthProvider } from '@/context/AuthContext'
 import { WorkspaceProvider } from '@/context/WorkspaceContext'
 import { ToastProvider } from '@/components/Toast'
 import AppShell from '@/layout/AppShell'
+import MarketingLayout from '@/marketing/MarketingLayout'
+import Home from '@/marketing/Home'
+import McpPage from '@/marketing/McpPage'
+import CollectionsLanding from '@/marketing/CollectionsLanding'
+import AffiliatePage from '@/marketing/AffiliatePage'
+import HelpCenter from '@/marketing/HelpCenter'
 import RequireAuth from '@/features/auth/RequireAuth'
 import Login from '@/features/auth/Login'
 import Signup from '@/features/auth/Signup'
@@ -34,6 +40,14 @@ export default function App() {
           <ToastProvider>
             <BrowserRouter>
               <Routes>
+                <Route element={<MarketingLayout />}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/mcp" element={<McpPage />} />
+                  <Route path="/free-collections" element={<CollectionsLanding />} />
+                  <Route path="/affiliate" element={<AffiliatePage />} />
+                  <Route path="/help" element={<HelpCenter />} />
+                </Route>
+
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -41,7 +55,6 @@ export default function App() {
                 <Route path="/onboarding" element={<RequireAuth><Onboarding /></RequireAuth>} />
 
                 <Route element={<RequireAuth needOnboarded><AppShell /></RequireAuth>}>
-                  <Route path="/" element={<Navigate to="/dashboard" replace />} />
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/discover" element={<Discover />} />
                   <Route path="/channels" element={<Channels />} />
@@ -57,7 +70,7 @@ export default function App() {
                   <Route path="/settings" element={<Settings />} />
                 </Route>
 
-                <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </BrowserRouter>
           </ToastProvider>
