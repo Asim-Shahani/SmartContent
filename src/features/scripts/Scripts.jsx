@@ -8,6 +8,7 @@ import Button from '@/components/Button'
 import Card from '@/components/Card'
 import EmptyState from '@/components/EmptyState'
 import AddToProject from '@/features/projects/AddToProject'
+import ExportMenu from '@/features/exports/ExportMenu'
 
 function ScriptCard({ script }) {
   const [blocks, setBlocks] = useState(script.blocks)
@@ -48,7 +49,7 @@ function ScriptCard({ script }) {
   return (
     <Card className="mb-4">
       <h2 className="mb-3 text-lg font-bold">{script.title}</h2>
-            <div className="mb-3"><AddToProject asset={{ type: 'script', refId: script.id, title: script.title }} /></div>
+                 <div className="mb-3 flex flex-wrap gap-2"><AddToProject asset={{ type: 'script', refId: script.id, title: script.title }} /><ExportMenu type="script" data={{ ...script, blocks }} /></div>
       {SCRIPT_BLOCKS.map((k) => (
         <div key={k} className="mb-3">
           <div className="mb-1 flex items-center justify-between gap-2">

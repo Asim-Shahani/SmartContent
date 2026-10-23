@@ -9,6 +9,7 @@ import Button from '@/components/Button'
 import Card from '@/components/Card'
 import EmptyState from '@/components/EmptyState'
 import AddToProject from '@/features/projects/AddToProject'
+import ExportMenu from '@/features/exports/ExportMenu'
 
 const fmt = (n) => new Intl.NumberFormat('en', { notation: 'compact' }).format(n)
 
@@ -53,8 +54,7 @@ function IdeaCard({ idea }) {
       <p className="mt-1 text-sm text-gray-500">
         From a video by {idea.creator} · {fmt(idea.views)} views · {idea.engagement}% engagement
       </p>
-            <div className="mt-3"><AddToProject asset={{ type: 'idea', refId: idea.id, title: idea.title }} /></div>
-
+                  <div className="mt-3 flex flex-wrap gap-2"><AddToProject asset={{ type: 'idea', refId: idea.id, title: idea.title }} /><ExportMenu type="idea" data={idea} /></div>
       <Section title="Content positioning"><p className="text-sm">{idea.positioning}</p></Section>
       <Section title="Storytelling format"><p className="text-sm">{idea.format}</p></Section>
       <Section title="Contrast mechanism"><p className="text-sm">{idea.contrast}</p></Section>

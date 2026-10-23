@@ -15,6 +15,8 @@ import Discover from '@/features/discover/Discover'
 import Channels from '@/features/channels/Channels'
 import Ideas from '@/features/ideas/Ideas'
 import Scripts from '@/features/scripts/Scripts'
+import Reports from '@/features/reports/Reports'
+import ReportDetail from '@/features/reports/ReportDetail'
 import Hooks from '@/features/hooks/Hooks'
 import Collections from '@/features/collections/Collections'
 import CollectionDetail from '@/features/collections/CollectionDetail'
@@ -45,6 +47,8 @@ export default function App() {
                   <Route path="/channels" element={<Channels />} />
                   <Route path="/ideas" element={<Ideas />} />
                   <Route path="/scripts" element={<Scripts />} />
+                  <Route path="/reports" element={<Reports />} />
+                  <Route path="/reports/:id" element={<ReportDetail />} />
                   <Route path="/hooks" element={<Hooks />} />
                   <Route path="/collections" element={<Collections />} />
                   <Route path="/collections/:id" element={<CollectionDetail />} />

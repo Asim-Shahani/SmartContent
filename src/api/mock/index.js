@@ -16,3 +16,4 @@ export {
   getSession, signUp, logIn, logOut, socialSignIn, passkeySignIn,
   enrollPasskey, requestPasswordReset, resetPassword, completeOnboarding,
 } from './auth'
+export { createReport, getReports, getReport } from './reports'

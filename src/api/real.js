@@ -47,3 +47,6 @@ export const enrollPasskey = notReady
 export const requestPasswordReset = notReady
 export const resetPassword = notReady
 export const completeOnboarding = notReady
+export const createReport = notReady
+export const getReports = notReady
+export const getReport = notReady

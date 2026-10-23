@@ -10,6 +10,7 @@ import Drawer from '@/components/Drawer'
 import Button from '@/components/Button'
 import Card from '@/components/Card'
 import AddToProject from '@/features/projects/AddToProject'
+import GenerateReportButton from '@/features/reports/GenerateReportButton'
 
 const TABS = ['Summary', 'Transcript', 'Caption', 'Idea', 'Hook', 'Format', 'Visual']
 
@@ -92,6 +93,7 @@ export default function AnalysisDrawer({ video, onClose }) {
           </div>
           <Card>{analysis[tab.toLowerCase()]}</Card>
                     <div className="mt-3"><AddToProject asset={{ type: 'video', refId: video.id, title: video.title }} /></div>
+                              <div className="mt-3"><GenerateReportButton video={video} /></div>
           <div className="mt-4 flex flex-wrap gap-2">
             <Button
               onClick={() => makeScript.mutate()}
