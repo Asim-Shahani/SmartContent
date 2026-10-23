@@ -5,3 +5,7 @@ export { searchHooks, generateHooks, getSavedHooks, saveHook, removeHook } from 
 export { getCollections, getCollection } from './collections'
 export { joinWaitlist } from './waitlist'
 export { getConnection, startVerification, verifyAccount, disconnectAccount, getDashboard } from './dashboard'
+export {
+  getWatchlist, getSuggestedChannels, describeChannels, searchChannels,
+  addChannel, addChannelByUrl, removeChannel,
+} from './channels'

@@ -6,6 +6,7 @@ import AppShell from '@/layout/AppShell'
 import PagePlaceholder from '@/components/PagePlaceholder'
 import Dashboard from '@/features/dashboard/Dashboard'
 import Discover from '@/features/discover/Discover'
+import Channels from '@/features/channels/Channels'
 import Scripts from '@/features/scripts/Scripts'
 import Hooks from '@/features/hooks/Hooks'
 import Collections from '@/features/collections/Collections'
@@ -13,7 +14,7 @@ import CollectionDetail from '@/features/collections/CollectionDetail'
 import Settings from '@/features/settings/Settings'
 
 const queryClient = new QueryClient()
-const later = ['Channels', 'Ideas', 'Projects']
+const later = ['Ideas', 'Projects']
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
                 <Route path="/" element={<Navigate to="/dashboard" replace />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/discover" element={<Discover />} />
+                <Route path="/channels" element={<Channels />} />
                 <Route path="/scripts" element={<Scripts />} />
                 <Route path="/hooks" element={<Hooks />} />
                 <Route path="/collections" element={<Collections />} />

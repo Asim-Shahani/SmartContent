@@ -1,3 +1,5 @@
+import { getWatchlist } from './channels'
+
 const VIDEOS = [
   { id: 1, title: 'I replaced my gym plan with 10 minutes a day', creator: '@liftwithmia', platform: 'TikTok', niche: 'Fitness', postedAt: '2 days ago', views: 910000, channelAvg: 12000, engagement: 9.4 },
   { id: 2, title: 'Nobody tells you this about index funds', creator: '@moneywithjay', platform: 'Shorts', niche: 'Finance', postedAt: '5 days ago', views: 640000, channelAvg: 41000, engagement: 6.1 },
@@ -11,10 +13,19 @@ const VIDEOS = [
 
 const delay = (ms) => new Promise((r) => setTimeout(r, ms))
 
-export async function getVideos({ niche = '', platform = '', minOutlier = 0, sort = 'outlier' } = {}) {
-  await delay(300) // pretend to be a network call
+export async function getVideos({
+  niche = '', platform = '', minOutlier = 0, sort = 'outlier', watchlistOnly = false, workspaceId = '',
+} = {}) {
+  await delay(300)
+  const handles = watchlistOnly ? (await getWatchlist(workspaceId)).map((c) => c.username) : null
   return VIDEOS
-    .filter((v) => (!niche || v.niche === niche) && (!platform || v.platform === platform) && v.outlierScore >= minOutlier)
+    .filter(
+      (v) =>
+        (!niche || v.niche === niche) &&
+        (!platform || v.platform === platform) &&
+        v.outlierScore >= minOutlier &&
+        (!handles || handles.includes(v.creator))
+    )
     .sort((a, b) => (sort === 'views' ? b.views - a.views : b.outlierScore - a.outlierScore))
 }
 
