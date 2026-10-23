@@ -11,3 +11,4 @@ export {
 } from './channels'
 export { getIdeas, toggleShortlist } from './ideas'
 export { createScriptFromIdea } from './scripts'
+export { getProjects, createProject, addAssetToProject, removeAssetFromProject, moveAsset } from './projects'
