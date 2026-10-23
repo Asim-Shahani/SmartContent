@@ -7,6 +7,7 @@ import PagePlaceholder from '@/components/PagePlaceholder'
 import Dashboard from '@/features/dashboard/Dashboard'
 import Discover from '@/features/discover/Discover'
 import Channels from '@/features/channels/Channels'
+import Ideas from '@/features/ideas/Ideas'
 import Scripts from '@/features/scripts/Scripts'
 import Hooks from '@/features/hooks/Hooks'
 import Collections from '@/features/collections/Collections'
@@ -14,7 +15,7 @@ import CollectionDetail from '@/features/collections/CollectionDetail'
 import Settings from '@/features/settings/Settings'
 
 const queryClient = new QueryClient()
-const later = ['Ideas', 'Projects']
+const later = ['Projects']
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/discover" element={<Discover />} />
                 <Route path="/channels" element={<Channels />} />
+                <Route path="/ideas" element={<Ideas />} />
                 <Route path="/scripts" element={<Scripts />} />
                 <Route path="/hooks" element={<Hooks />} />
                 <Route path="/collections" element={<Collections />} />

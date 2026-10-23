@@ -54,3 +54,24 @@ export async function expandScript(id) {
 }
 
 export { SCRIPT_BLOCKS }
+
+// Converting an idea carries its context into the script
+export async function createScriptFromIdea(idea) {
+  await delay(1200)
+  const script = {
+    id: nextId++,
+    version: 1,
+    videoId: idea.videoId,
+    title: `Script: ${idea.title.replace('Idea: ', '')}`,
+    blocks: {
+      Hook: `Open with the result. Inspired by: "${idea.sourceTitle}"`,
+      Introduction: `Position yourself as: ${idea.positioning}`,
+      'Main content': `${idea.contrast} ${idea.personalization[0]}`,
+      'Story flow': idea.format,
+      CTA: 'Ask viewers to follow for part two.',
+      Ending: 'Loop back to the opening line.',
+    },
+  }
+  scripts = [script, ...scripts]
+  return script
+}

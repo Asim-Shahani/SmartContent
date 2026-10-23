@@ -1,4 +1,5 @@
 import { getVideoById } from './videos'
+import { addIdea } from './ideas'
 
 const store = new Map() // analyzed videos, kept in memory
 const delay = (ms) => new Promise((r) => setTimeout(r, ms))
@@ -30,5 +31,6 @@ export async function analyzeVideo(videoId) {
     visual: 'Close-up shots, text overlay on the first frame, fast cuts every 2 seconds.',
   }
   store.set(videoId, analysis)
+  addIdea(v, analysis) // idea is created automatically, at no extra cost
   return { analysis, charged: true }
 }

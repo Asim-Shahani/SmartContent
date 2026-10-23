@@ -9,3 +9,5 @@ export {
   getWatchlist, getSuggestedChannels, describeChannels, searchChannels,
   addChannel, addChannelByUrl, removeChannel,
 } from './channels'
+export { getIdeas, toggleShortlist } from './ideas'
+export { createScriptFromIdea } from './scripts'
